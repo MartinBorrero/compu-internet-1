@@ -1,0 +1,5 @@
+.setting*
+bin/
+build/
+node_modules
+.vscode
