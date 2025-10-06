@@ -2,19 +2,30 @@ package model;
 
 public class Task {
     private int id;
-    private String name;
+    private String title;
     private String description;
+    private String dueDate;
+    private String priority;
     private TaskStage stage;
-
-    public Task(int id, String name, String description, TaskStage stage) {
-        this.id = id;
-        this.name = name;
-        this.description = description;
-        this.stage = stage;
-    }
 
     public Task(){
 
+    }
+
+    public String getDueDate() {
+        return dueDate;
+    }
+
+    public String getPriority() {
+        return priority;
+    }
+
+    public void setDueDate(String dueDate) {
+        this.dueDate = dueDate;
+    }
+
+    public void setPriority(String priority) {
+        this.priority = priority;
     }
 
     public void setId(int id) {
@@ -23,8 +34,8 @@ public class Task {
     public int getId() {
         return id;
     }
-    public void setName(String name) {
-        this.name = name;
+    public void setTitle(String name) {
+        this.title = name;
     }
 
     public String getDescription() {
@@ -43,13 +54,13 @@ public class Task {
         this.stage = stage;
     }
 
-    public String getName() {
-        return name;
+    public String getTitle() {
+        return title;
     }
 
     @Override
     public String toString() {
-        return id +" - " +name;
+        return id +" - " +title;
     }
 
 }

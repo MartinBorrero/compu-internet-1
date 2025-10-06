@@ -1,17 +1,27 @@
 package model;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class TaskStage {
     private int id;
     private String name;
     private String description;
-    public TaskStage(int id, String name, String description) {
-        this.id = id;
-        this.name = name;
-        this.description = description;
-    }
+    private List<Task> tasks;
 
     public TaskStage(){
 
+    }
+
+    public List<Task> getTasks() {
+        if (tasks == null) {
+            tasks = new ArrayList<>();
+        }
+        return tasks;
+    }
+
+    public void setTasks(List<Task> tasks) {
+        this.tasks = tasks;
     }
 
     public void setId(int id) {

@@ -6,8 +6,6 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.management.RuntimeErrorException;
-
 import DBConfig.ConnectionManager;
 import model.Task;
 import model.TaskStage;
@@ -19,7 +17,8 @@ public class TaskDaoDB implements Dao<Task, Integer>{
         try {
             List<Task> tasks = new ArrayList<>();
             Connection conn = ConnectionManager
-            .getInstance("jdbc:postgresql://192.168.131.42:5432/task_manager","postgres","postgres").getConnection();
+            .getInstance(
+).getConnection();
             String query = "Select * from task";
 
             Statement statement = conn.createStatement();
@@ -28,9 +27,9 @@ public class TaskDaoDB implements Dao<Task, Integer>{
 
             while (result.next()) {
                 Task t = new Task();
-
+                //TODO completar mapeo de las entidades
                 t.setId(result.getInt("id"));
-                t.setName(result.getString("name"));
+                t.setTitle(result.getString("title"));
                 t.setDescription(result.getString("description"));
                 int stageID = result.getInt("stage_id");
                 TaskStage stage = new TaskStage();

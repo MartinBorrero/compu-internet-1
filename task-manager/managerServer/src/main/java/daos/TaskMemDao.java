@@ -17,7 +17,9 @@ public class TaskMemDao implements Dao<Task, Integer>{
 
     @Override
     public Task finById(Integer id) {
-        return tasks.stream().filter(t -> t.getId() == id).findFirst().orElse(null);
+        return tasks.stream()
+            .filter(t -> t.getId() == id)
+            .findFirst().orElse(null);
     }
 
     @Override
@@ -25,7 +27,7 @@ public class TaskMemDao implements Dao<Task, Integer>{
         Task exist = finById(newEntity.getId());
         if(exist != null){
             exist.setDescription(newEntity.getDescription());
-            exist.setName(newEntity.getName());
+            exist.setTitle(newEntity.getTitle());
             exist.setStage(newEntity.getStage());
         }
         return exist;
