@@ -58,8 +58,8 @@ public class ManagerServerTest {
         TaskStage[] stages = gson.fromJson(resp, TaskStage[].class);
         assert stages.length == 3;
         assert stages[0].getName().equals("TO DO");
-        assert stages[1].getName().equals("Doing");
-        assert stages[2].getName().equals("Done");
+        assert stages[1].getName().equals("IN PROGRESS");
+        assert stages[2].getName().equals("DONE");
 
     }
 
