@@ -34,21 +34,19 @@ export default {
   },
   plugins: [
     new HtmlWebpackPlugin({
-      // Leemos el index.html original y reemplazamos la referencia a index.js
-      // por la ruta del bundle que genera webpack. El archivo original
-      // en la carpeta del proyecto queda intacto.
+      // Usamos templateContent para leer el index.html fuente (sin modificarlo)
+      // y reemplazar únicamente la etiqueta que apunta a index.js por la ruta
+      // real del bundle que genera webpack. De este modo el archivo fuente
+      // puede seguir apuntando a index.js para uso local en desarrollo.
       templateContent: ({ htmlWebpackPlugin }) => {
-        const raw = fs.readFileSync(
-          path.resolve(__dirname, 'index.html'),
-          'utf8'
-        );
-        return raw.replace(
-          /<script\s+src="index\.js"(\s+type="module")?\s*><\/script>/i,
-          '<script src="<%= htmlWebpackPlugin.files.js[0] %>"></script>'
-        );
+        const raw = fs.readFileSync(path.resolve(__dirname, 'index.html'), 'utf8');
+        // Reemplazamos la primera ocurrencia de <script src="index.js" ...></script>
+        // por el script que provee HtmlWebpackPlugin. Usamos inject: false
+        // para evitar que el plugin añada otra etiqueta.
+        return raw.replace(/<script\s+src=["']index\.js["'][^>]*><\/script>/i, '<script src="<%= htmlWebpackPlugin.files.js[0] %>"></script>');
       },
-      inject: false,
-    }),
+      inject: false
+    })
   ],
   devServer: {
     static: {

@@ -7,6 +7,7 @@ const Cell = (cell) => {
     cellContainer.className = "cell"
 
     cellContainer.classList.add(hide ? "hide":isMine ? "isMine":"blank")
+    cellContainer.innerText = !hide ? value : ""
 
     cellContainer.addEventListener("click", (e) => {
         e.preventDefault()
