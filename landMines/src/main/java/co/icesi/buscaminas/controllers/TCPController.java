@@ -102,7 +102,7 @@ public class TCPController {
                             response.status = "OK";
                             response.data.put("win", resp);
 
-                            response.data.put("gameEnd", false);
+                            response.data.put("gameEnd", resp);
                         } catch (Exception e) {
                             response.data.put("gameEnd", true);
                             response.data.put("win", false);

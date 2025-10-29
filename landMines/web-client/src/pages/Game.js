@@ -31,6 +31,17 @@ const showCell = async (cellId) => {
 
   const newMatrix = await data.json();
 
+  const win = newMatrix.data.win;
+  const end = newMatrix.data.gameEnd;
+  console.log({ win, end });
+  if (end) {
+    if (win) {
+      alert('You Win!!');
+    } else {
+      alert('You Loss :c');
+    }
+  }
+
   const board = Board(newMatrix.data.board, showCell);
   container.appendChild(board);
 };
@@ -52,7 +63,5 @@ function Game() {
 
   return container;
 }
-
-const updateBoard = (data) => {};
 
 export default Game;
