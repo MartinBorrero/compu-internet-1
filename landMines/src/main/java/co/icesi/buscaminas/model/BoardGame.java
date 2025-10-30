@@ -6,7 +6,14 @@ public class BoardGame {
 
     private Cell[][] board;
 
+    private int mines;
+
+    public int getMines() {
+        return mines;
+    }
+
     public int initGame(int n, int m, int mines){
+        this.mines = mines;
         board = new Cell[n][m];
         Random rd = new Random();
         int mi = 0;
@@ -77,6 +84,7 @@ public class BoardGame {
         }
         Cell cell = board[i][j];
         if(cell.isLandMine()){
+            showAll(true);
             throw new RuntimeException("Game over");
         }else {
             if (cell.isHide()) {
